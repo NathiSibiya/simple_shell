@@ -1,13 +1,25 @@
 #ifndef UNIX_H
 #define UNIX_H
 
+#include "fcntl.h"
+#include "signal.h"
+#include "sys/types.h"
+#include "stdio.h"
+#include "errno.h"
+#include "stdlib.h"
+#include "unistd.h"
+#include "sys/stat.h"
+#include "sys/wait.h"
+
+#define END_OF_FILE -2
+#define EXIT -3
+
 
 /**
  * struct builtin_s - new struct type defining builtin commands
  * @name: name of builtin command
- * @f: function pointer to the builtin commands
+ * @f: function pointer to the builtin command
  */
-
 
 typedef struct builtin_s
 {
@@ -16,9 +28,56 @@ typedef struct builtin_s
 } builtin_t;
 
 
-/* Builtins */
 
 int (*get_builtin(char *command))(char **args, char **front);
+int shellby_alias(char **args, char __attribute__((__unused__)) **front);
+void set_alias(char *var_name, char *value);
+void print_alias(alias_t *alias);
+int shellby_exit(char **args, char **front);
+int shellby_cd(char **args, char __attribute__((__unused__)) **front);
+int shellby_help(char **args, char __attribute__((__unused__)) **front);
+void help_all(void);
+void help_alias(void);
+void help_cd(void);
+void help_exit(void);
+void help_help(void);
+void help_env(void);
+void help_setenv(void);
+void help_unsetenv(void);
+int shellby_env(char **args, char __attribute__((__unused__)) **front);
+int shellby_setenv(char **args, char __attribute__((__unused)) **front);
+int shellby_unsetenv(char **args, char __attribute__((__unused__)) **front);
+extern char **environ;
+char *name;
+int hist;
+
+
+/**
+ * struct alias_s - struct defining aliases
+ * @name: name of alias
+ * @value: value of alias
+ * @next: pointer to another struct alias_s
+ */
+
+typedef struct alias_s
+{
+	char *name;
+	char *value;
+	struct alias_s *next;
+} alias_t;
+
+
+/**
+ * struct list_s - struct type defining linked list
+ * @dir: a directory path
+ * @next: pointer to another struct list_s
+ */
+
+typedef struct list_s
+{
+	char *dir;
+	struct list_s *next;
+} list_t;
 
 
 #endif
