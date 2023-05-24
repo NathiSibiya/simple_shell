@@ -77,7 +77,50 @@ typedef struct list_s
 {
 	char *dir;
 	struct list_s *next;
-} list_t;
+} list_t; 
 
 
+/* Global environment */
+extern char **environ;
+/* Global program name */
+int hist;
+
+/* Main Helpers */
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+char *_itoa(int num);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char **_strtok(char *line, char *delim);
+char *get_path_dir(char *path);
+list_t *get_path_dir(char *path);
+int execute(char **args, char **front);
+void free_list(list_t *head);
+
+
+/* Input Helpers */
+void handle_line(char **line, ssize_t read);
+void variable_replacement(char **args, int *exe_ret);
+char *get_args(char *line, int *exe_ret);
+int call_args(char **args, char **front, int *exe_ret);
+int run_args(char **args, char **front, int *exe_ret);
+char ** replace_aliases(char **args);
+void free_args(char **args, cahr **front);
+int check_args(char **args);
+int handle_args(int *exe_ret); 
+
+/* Strings functions */
+int _strncmp(const char *s1, const char *s2, size_t n);
+int _strlen(const char *s);
+int _strcmp(char *s1, char *s2);
+char *_strcat(char *dest, const char *src);
+char *_strncat(char *dest, const char *src, size_t n);
+char *_strcpy(char *dest, const char *src);
+char *strchr(char *s, char c);
+int strspn(char *s, char *accept);
+
+/* Builtins */
+int (*get_builtin(char *command))(char **args, char **front);
+int shellby_help(char **args, char _attribute_((_unused_)) **front);
+int shellby_exit(char **args, char **front);
+int shellby_alias(char **args, char_attribute_((_unused_)) **front);
+int shellby_env
 #endif
