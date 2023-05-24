@@ -1,17 +1,16 @@
 #include "unix.h"
-
 char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
-int _strcmp(char *s1, char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
+int _strcmp(char *s1, char *s2);
 
 /**
  * _strchr - this locates a character in a string.
- * @s: this is the string to be searched.
- * @c:this is the character to be located.
+ * @s: is the string to be searched.
+ * @c: is the character to be located.
  *
  * Return: when c is found - a pointer to the first occurence.
- *        when c is not found - NULL.
+ *         If c is not found - NULL.
  */
 char *_strchr(char *s, char c)
 {
@@ -28,8 +27,8 @@ char *_strchr(char *s, char c)
 
 /**
  * _strspn - this gets the length of a prefix substring.
- * @s: string to be searched.
- * @accept: prefix to be measured.
+ * @s: this is the string to be searched.
+ * @accept: is the prefix to be measured.
  *
  * Return:  number of bytes in s which
  *         consist only of bytes from accept.
@@ -55,11 +54,11 @@ int _strspn(char *s, char *accept)
 }
 
 /**
- * _strcmp - this Compares two strings.
- * @s1: first string to be compared.
- * @s2: second string to be compared.
+ * _strcmp - this compares two strings.
+ * @s1:is the first string to be compared.
+ * @s2:is the second string to be compared.
  *
- * Return: the positive byte difference if s1 > s2
+ * Return: is the positive byte difference if s1 > s2
  *         0 if s1 = s2
  *         Negative byte difference if s1 < s2
  */
@@ -79,9 +78,9 @@ int _strcmp(char *s1, char *s2)
 
 /**
  * _strncmp - this compare two strings.
- * @s1: the  Pointer to a string.
- * @s2:the  Pointer to a string.
- * @n: first n bytes of the strings to compare.
+ * @s1: this is a pointer to a string.
+ * @s2: this is a pointer to a string.
+ * @n: the first n bytes of the strings to compare.
  *
  * Return: Less than 0 if s1 is shorter than s2.
  *         0 if s1 and s2 match.
