@@ -11,7 +11,8 @@
 #include "errno.h"
 #include "stdio.h"
 
-
+#define END_OF_FILE -2
+#define EXIT -3
 
 
 /**
@@ -46,17 +47,33 @@ typedef struct list_s
 } list_t;
 
 
-/* Global environment */
+/**
+ * struct alias_s - new struct defining aliases
+ * @name: name of alias
+ * @value: value of alias
+ * @next: pointer to next alias
+ */
+
+typedef struct alias_s
+{
+	char *name;
+	char *value;
+	struct alias_s *next;
+} alias_t;
+
+
 extern char **environ;
-/* Global program name */
+char *name;
 int hist;
+
+alias_t *aliases;
 
 /* Main Helpers */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 char *_itoa(int num);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char **_strtok(char *line, char *delim);
-char *get_path_dir(char *path);
+char *get_location(char *command);
 list_t *get_path_dir(char *path);
 int execute(char **args, char **front);
 void free_list(list_t *head);
@@ -69,7 +86,7 @@ char *get_args(char *line, int *exe_ret);
 int call_args(char **args, char **front, int *exe_ret);
 int run_args(char **args, char **front, int *exe_ret);
 char **replace_aliases(char **args);
-void free_args(char **args, cahr **front);
+void free_args(char **args, char **front);
 int check_args(char **args);
 int handle_args(int *exe_ret);
 
@@ -80,8 +97,8 @@ int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, const char *src);
 char *_strncat(char *dest, const char *src, size_t n);
 char *_strcpy(char *dest, const char *src);
-char *strchr(char *s, char c);
-int strspn(char *s, char *accept);
+char *_strchr(char *s, char c);
+int _strspn(char *s, char *accept);
 
 /* Builtins */
 int (*get_builtin(char *command))(char **args, char **front);

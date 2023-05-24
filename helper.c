@@ -94,7 +94,7 @@ char *get_env_value(char *beginning, int len)
  * description: this replaces $$ with the current PID, $? with the return value
  * of the last executed programmmmmm, and environmental variables 
  * preceded by $ with their corresponding valve.
- * /
+ */
  
  void variable_replacement(char **line, int *exe_ret)
  {
@@ -107,7 +107,7 @@ char *get_env_value(char *beginning, int len)
 		if (old_line[j] == '$' && old_line[j + 1] && 
 		old_line[j +1] ! = ' ' )
 	{
-		if (old_line[j] + 1] == '?')
+		if (old_line[j + 1] == '?')
 		{
 			replacement = _itoa(*exe_ret);
 			k = j +2;
