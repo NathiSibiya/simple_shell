@@ -1,6 +1,6 @@
 #include "unix.h"
 
-char *get_pid(void)
+char *get_pid(void);
 void free_args(char **args, char **front);
 char *get_env_value(char *beginning, int len);
 void variable_replacement(char **args, int *exe_ret);
@@ -10,15 +10,15 @@ void variable_replacement(char **args, int *exe_ret);
  * @args: is a null-terminated double pointer containing commands/arguments.
  * @front: is a double pointer to the beginning of args.
  */
-void free_args(char **args, char **front)
-{
-	size_t i;
+void free_args(char **args, char **front);
+(
+	(size_t i;
 
 	for (i = 0; args[i] || args[i + 1]; i++)
 		free(args[i]);
 
 	free(front);
-}
+)
 
 /**
  * get_pid - this brings the current process ID.
@@ -29,7 +29,7 @@ void free_args(char **args, char **front)
  *
  * Return: this is the current process ID or NULL on failure.
  */
-char *get_pid(void)
+char *get_pid(void);
 {
 	size_t i = 0;
 	char *buffer;
@@ -66,7 +66,7 @@ char *get_pid(void)
  *
  * Description: here variables are stored in the format VARIABLE=VALUE.
  */
-char *get_env_value(char *beginning, int len)
+char *get_env_value(char *beginning, int len);
 {
 	char **var_addr;
 	char *replacement = NULL, *temp, *var;
@@ -98,38 +98,20 @@ char *get_env_value(char *beginning, int len)
  * @line: is a double pointer containing the command and arguments.
  * @exe_ret: is a pointer to the return value of the last executed command.
  *
-<<<<<<< HEAD
  * Description: this replaces $$ with the current PID, $? with the return value
  *              of the last executed program, and envrionmental variables
  *              preceded by $ with their corresponding value.
  */
 void variable_replacement(char **line, int *exe_ret)
-{
+	{
 	int j, k = 0, len;
-=======
- * description: this replaces $$ with the current PID, $? with the return value
- * of the last executed programmmmmm, and environmental variables 
- * preceded by $ with their corresponding valve.
- */
- 
- void variable_replacement(char **line, int *exe_ret)
- {
- 	int j, k = 0, len;
->>>>>>> d8edc8c2104c5635cd3836cc40c0b248d98d1dc6
 	char *replacement = NULL, *old_line = NULL, *new_line;
 
 	old_line = *line;
 	for (j = 0; old_line[j]; j++)
 	{
-<<<<<<< HEAD
 		if (old_line[j] == '$' && old_line[j + 1] &&
 				old_line[j + 1] != ' ')
-=======
-		if (old_line[j] == '$' && old_line[j + 1] && 
-		old_line[j +1] ! = ' ' )
-	{
-		if (old_line[j + 1] == '?')
->>>>>>> d8edc8c2104c5635cd3836cc40c0b248d98d1dc6
 		{
 			if (old_line[j + 1] == '$')
 			{
@@ -143,7 +125,7 @@ void variable_replacement(char **line, int *exe_ret)
 			}
 			else if (old_line[j + 1])
 			{
-				/* extract the variable name to search for */
+				/* this extract the variable name to search for */
 				for (k = j + 1; old_line[k] &&
 						old_line[k] != '$' &&
 						old_line[k] != ' '; k++)
@@ -171,3 +153,4 @@ void variable_replacement(char **line, int *exe_ret)
 		}
 	}
 }
+
