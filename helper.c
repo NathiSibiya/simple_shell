@@ -98,6 +98,7 @@ char *get_env_value(char *beginning, int len)
  * @line: is a double pointer containing the command and arguments.
  * @exe_ret: is a pointer to the return value of the last executed command.
  *
+<<<<<<< HEAD
  * Description: this replaces $$ with the current PID, $? with the return value
  *              of the last executed program, and envrionmental variables
  *              preceded by $ with their corresponding value.
@@ -105,13 +106,30 @@ char *get_env_value(char *beginning, int len)
 void variable_replacement(char **line, int *exe_ret)
 {
 	int j, k = 0, len;
+=======
+ * description: this replaces $$ with the current PID, $? with the return value
+ * of the last executed programmmmmm, and environmental variables 
+ * preceded by $ with their corresponding valve.
+ */
+ 
+ void variable_replacement(char **line, int *exe_ret)
+ {
+ 	int j, k = 0, len;
+>>>>>>> d8edc8c2104c5635cd3836cc40c0b248d98d1dc6
 	char *replacement = NULL, *old_line = NULL, *new_line;
 
 	old_line = *line;
 	for (j = 0; old_line[j]; j++)
 	{
+<<<<<<< HEAD
 		if (old_line[j] == '$' && old_line[j + 1] &&
 				old_line[j + 1] != ' ')
+=======
+		if (old_line[j] == '$' && old_line[j + 1] && 
+		old_line[j +1] ! = ' ' )
+	{
+		if (old_line[j + 1] == '?')
+>>>>>>> d8edc8c2104c5635cd3836cc40c0b248d98d1dc6
 		{
 			if (old_line[j + 1] == '$')
 			{
