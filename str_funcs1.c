@@ -1,7 +1,7 @@
 #include "shell.h"
 
 int _strlen(cont char *s);
-char *_strcpy(char *dest,const char *src);
+char *_strcpy(char *dest, const char *src);
 char *_strcat(char *dest, const *src);
 char *strncat(char *dest, const char *src, size_t n);
 
@@ -14,7 +14,8 @@ char *strncat(char *dest, const char *src, size_t n);
 int _strlen(const char *s)
 {
 	int length = 0;
-	if(!s)
+
+	if (!s)
 		return (length);
 	for (length = 0; s[length]; length++)
 		;
@@ -34,8 +35,7 @@ char *_strcat(char *dest, const char *src)
 	const char *srcTemp;
 
 	destTemp = dest;
-	srcTemp = src;
-	
+srcTemp = src;	
 	while (*destTemp != '\0')
 		destTemp++ = *srcTemp++;
 	*destTemp = '\0';
@@ -43,9 +43,9 @@ char *_strcat(char *dest, const char *src)
 }
 
 /**
- * _strncat - this concantenates two strings where n number
+ *_strncat - this concantenates two strings where n number
  * 		of bytes are copied from source.
- * @dest: this is pointer  to destination string.
+ *@dest: this is pointer  to destination string.
  * @src:this is pointer to source string.
  * @n: n bytes to copy from src.
  *
@@ -55,6 +55,7 @@ char *strncat(char*dest, const char *src, size_t n)
 {
 	size_t dest_len = _strlen(dest);
 	size_t i;
+
 	for (i = 0; i < n && src[i]!= '\0'; i++)
 		dest[dest_len + i] = src[i];
 	dest[dest_len + i] = '\0';

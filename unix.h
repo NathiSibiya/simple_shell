@@ -122,5 +122,43 @@ int (*get_builtin(char *command))(char **args, char **front);
 int shellby_help(char **args, char _attribute_((_unused_)) **front);
 int shellby_exit(char **args, char **front);
 int shellby_alias(char **args, char_attribute_((_unused_)) **front);
-int shellby_env
+int shellby_env(char **args, char __attribute__((__unused__)) **front);
+int shellby_setenv(char **args, char __attribute__((__unused__)) **front);
+int shellby_unsetenv(char **args, char __attribute__((__unused__)) **front);
+int shellby_cd(char **args, char __attribute__((__unused__)) **front);
+
+/* Builtin Helpers */
+void free_env(void);
+char **_getenv(const char *var);
+char **_copyenv(void);
+
+/* this handles error */
+char *error_127(char **args);
+int create_error(char **args, int err);
+char *error_env(char **args);
+char *error_2_exit(char **args);
+char *error_2_cd(char **args);
+char *error_1(char **args);
+char *error_2_syntax(char **args);
+char *error_126(char **args);
+
+
+/* this are Linkedlist Helpers */
+void free_list(list_t *head);
+alias_t *add_alias_end(alias_t **head, char *name, char *value);
+void free_alias_list(alias_t *head);
+list_t *add_node_end(list_t **head, char *dir);
+
+void help_cd(void);
+void help_all(void);
+void help_alias(void);
+void help_exit(void);
+void help_help(void);
+void help_setenv(void);
+void help_env(void);
+void help_unsetenv(void);
+void help_history(void);
+
+int proc_file_commands(char *file_path, int *exe_ret);
+
 #endif
