@@ -1,5 +1,17 @@
-#ifndef _UNIX_H
-#define _UNIX_H
+#ifndef UNIX_H
+#define UNIX_H
+
+#include "fcntl.h"
+#include "signal.h"
+#include "sys/types.h"
+#include "sys/stat.h"
+#include "sys/wait.h"
+#include "stdlib.h"
+#include "unistd.h"
+#include "errno.h"
+#include "stdio.h"
+
+
 
 
 /**
@@ -21,22 +33,17 @@ typedef struct builtin_s
 int (*get_builtin(char *command))(char **args, char **front);
 
 
-#include <fcntl.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <stdio.h>
-
+/**
+ * struct list_s - struct defining linked list
+ * @dir: directory path
+ * @next: pointer to anther struct list_s
+ */
 
 typedef struct list_s
 {
 	char *dir;
 	struct list_s *next;
-} list_t; 
+} list_t;
 
 
 /* Global environment */
@@ -61,10 +68,10 @@ void variable_replacement(char **args, int *exe_ret);
 char *get_args(char *line, int *exe_ret);
 int call_args(char **args, char **front, int *exe_ret);
 int run_args(char **args, char **front, int *exe_ret);
-char ** replace_aliases(char **args);
+char **replace_aliases(char **args);
 void free_args(char **args, cahr **front);
 int check_args(char **args);
-int handle_args(int *exe_ret); 
+int handle_args(int *exe_ret);
 
 /* Strings functions */
 int _strncmp(const char *s1, const char *s2, size_t n);
@@ -78,9 +85,9 @@ int strspn(char *s, char *accept);
 
 /* Builtins */
 int (*get_builtin(char *command))(char **args, char **front);
-int shellby_help(char **args, char _attribute_((_unused_)) **front);
+int shellby_help(char **args, char __attribute__((__unused__)) **front);
 int shellby_exit(char **args, char **front);
-int shellby_alias(char **args, char_attribute_((_unused_)) **front);
+int shellby_alias(char **args, char __attribute__((__unused__)) **front);
 int shellby_env(char **args, char __attribute__((__unused__)) **front);
 int shellby_setenv(char **args, char __attribute__((__unused__)) **front);
 int shellby_unsetenv(char **args, char __attribute__((__unused__)) **front);
