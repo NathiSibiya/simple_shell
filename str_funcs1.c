@@ -1,8 +1,8 @@
 #include "unix.h"
 
 char *_strcpy(char *dest, const char *src);
-int _strlen(const char *s)
-char *_strcat(char *dest, const *src);
+int _strlen(const char *s);
+char *_strcat(char *dest, const char *src);
 char *strncat(char *dest, const char *src, size_t n);
 
 /**
@@ -38,7 +38,7 @@ char *_strcat(char *dest, const char *src)
 	srcTemp =  src;
 
 	while (*destTemp != '\0')
-		destTemp++ = *srcTemp++;
+		*destTemp++ = *srcTemp++;
 	*destTemp = '\0';
 	return (dest);
 }

@@ -2,7 +2,7 @@
 
 void handle_line(char **line, ssize_t read);
 void logical_ops(char *line, ssize_t *new_len);
-ssize_t get_new_len(char *line, ssize_t *new_len);
+ssize_t get_new_len(char *line);
 
 /**
  * handle_line - this partitions a line read from standard input as needed.
