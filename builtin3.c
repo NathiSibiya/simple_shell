@@ -91,7 +91,7 @@ int shellby_setenv(char **args, char __attribute__((__unused__)) **front)
  * Return: if error -1, else 0
  */
 
-int shellby_insetenv(char **args, char __attribute__((__unused__)) **front)
+int shellby_unsetenv(char **args, char __attribute__((__unused__)) **front)
 {
 	char **env_var, **new_environ;
 	size_t size;
